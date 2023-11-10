@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://njqf8grnggxj"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://c0cbk5c7btfuy" path="res://Other/fruit_physics_mat.tres" id="1_2hejt"]
+[ext_resource type="Script" path="res://Script/Fruit.gd" id="1_kv7mg"]
+[ext_resource type="Texture2D" uid="uid://dglforno4k0ok" path="res://Art/strawberry.png" id="2_ww786"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_45yiq"]
+radius = 29.0
+
+[node name="Strawberry" type="RigidBody2D"]
+position = Vector2(577, 445)
+mass = 0.1
+physics_material_override = ExtResource("1_2hejt")
+max_contacts_reported = 10
+contact_monitor = true
+script = ExtResource("1_kv7mg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-7, 9)
+shape = SubResource("CircleShape2D_45yiq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_ww786")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

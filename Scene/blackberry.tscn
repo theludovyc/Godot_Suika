@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0tbt8w7uo13m"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://c0cbk5c7btfuy" path="res://Other/fruit_physics_mat.tres" id="1_b5y3m"]
+[ext_resource type="Script" path="res://Script/Fruit.gd" id="1_kd1vg"]
+[ext_resource type="Texture2D" uid="uid://7y3l4fga0xgj" path="res://Art/black-berry-dark.png" id="2_kj75s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_45yiq"]
+radius = 34.0147
+
+[node name="Blackberry" type="RigidBody2D"]
+position = Vector2(577, 445)
+mass = 0.2
+physics_material_override = ExtResource("1_b5y3m")
+max_contacts_reported = 10
+contact_monitor = true
+script = ExtResource("1_kd1vg")
+fruit_type = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 8)
+shape = SubResource("CircleShape2D_45yiq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_kj75s")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

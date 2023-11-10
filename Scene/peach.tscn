@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc861qjvhvy87"]
+
+[ext_resource type="Script" path="res://Script/Fruit.gd" id="1_bpmhe"]
+[ext_resource type="PhysicsMaterial" uid="uid://c0cbk5c7btfuy" path="res://Other/fruit_physics_mat.tres" id="1_qgdgl"]
+[ext_resource type="Texture2D" uid="uid://bdfnq7h5d60up" path="res://Art/peach.png" id="2_632sv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_45yiq"]
+radius = 53.0094
+
+[node name="Peach" type="RigidBody2D"]
+position = Vector2(577, 445)
+mass = 0.3
+physics_material_override = ExtResource("1_qgdgl")
+max_contacts_reported = 10
+contact_monitor = true
+script = ExtResource("1_bpmhe")
+fruit_type = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_45yiq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_632sv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
